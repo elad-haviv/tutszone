@@ -24,6 +24,10 @@ class Lesson extends Model
         return $this->belongsToMany(Category::class, 'collections');
     }
 
+    public function cempleted() : BelongsToMany {
+        return $this->belongsToMany(User::class, 'completions');
+    }
+
     public function comments() : HasMany {
         return $this->hasMany(Comment::class);
     }

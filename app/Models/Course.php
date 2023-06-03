@@ -12,20 +12,16 @@ class Course extends Model
 {
     use HasFactory;
 
-    public function user() : HasOne {
-        return $this->hasOne(User::class);
+    public function author() : HasOne {
+        return $this->hasOne(User::class, 'author_id');
     }
 
-    public function author() : HasOne {
-        return $this->user();
+    public function user() : HasOne {
+        return $this->author();
     }
 
     public function categories() : BelongsToMany {
         return $this->belongsToMany(Category::class, 'collections');
-    }
-
-    public function lessons() : HasMany {
-        return $this->hasMany(Lesson::class);
     }
 
     public function comments() : HasMany {
@@ -38,6 +34,10 @@ class Course extends Model
 
     public function sections() : HasMany {
         return $this->hasMany(Section::class);
+    }
+
+    public function lessons() : HasMany {
+        return $this->hasMany(Lesson::class);
     }
 
     public function students() : BelongsToMany {

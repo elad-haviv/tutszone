@@ -61,8 +61,8 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function completions() : HasMany {
-        return $this->hasMany(Completion::class);
+    public function completions() : BelongsToMany {
+        return $this->belongsToMany(Course::class, 'completions');
     }
 
     public function following() : BelongsToMany {

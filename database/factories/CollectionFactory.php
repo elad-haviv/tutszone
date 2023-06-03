@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class CollectionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'course_id' => Course::inRandomOrder()->first()->id
         ];
     }
 }

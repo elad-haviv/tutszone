@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("subtitle")->nullable();
             $table->text("contents");
             $table->string("layout")->default("layout.page.default");
-            $table->boolean("nav_visible");
+            $table->boolean("nav_visible")->default(true);
             $table->timestamps();
         });
     }

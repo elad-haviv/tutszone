@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Lesson;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,10 @@ class CompletionFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::inRandomOrder()->first();
         return [
-            //
+            'user_id' => $user->id,
+            'lesson_id' => Lesson::where('user_id', '<>', $user->id)->inRandomOrder()->first()->id
         ];
     }
 }

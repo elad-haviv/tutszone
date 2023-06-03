@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string("subtitle")->nullable();
             $table->text("description");
             $table->string("image");
-            $table->decimal("price", 5, 2, true)->default(0);
+            $table->float("price")->default(0);
             $table->foreignId("author_id")->references("id")->on("users");
-            
+
             $table->timestamps();
         });
     }

@@ -17,7 +17,10 @@ class LessonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'slug' => fake()->slug(6),
+            'title' => fake()->sentence(),
+            'description' => fake()->text(50),
+            'contents' => fake()->text(500)
         ];
     }
 }

@@ -17,7 +17,10 @@ class PageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'slug' => fake()->slug(),
+            'title' => fake()->sentence(),
+            'subtitle' => fake()->text(50),
+            'contents' => fake()->text(500)
         ];
     }
 }
