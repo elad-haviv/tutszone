@@ -1,2 +1,2 @@
-import * as Bootstrap from "bootstrap"
+import * as UiKit from "uikit"
 import './bootstrap';
