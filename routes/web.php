@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::controller(CategoryController::class)->group(function() {
+    Route::get('/categories', 'index')->name('categories');
+    Route::get('/category/{category:slug}', 'show')->name('category');
 });

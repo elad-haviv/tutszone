@@ -24,8 +24,8 @@
             This is the master content
         @show
     </main>
-    <footer>
-
+    <footer class="text-center bg-dark text-bg-dark p-3">
+        <small>All rights reserved &copy; 2010-2023</small>
     </footer>
     @vite(['resources/js/app.js'])
     @livewireScripts
