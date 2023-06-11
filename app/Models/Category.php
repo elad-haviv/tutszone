@@ -24,4 +24,8 @@ class Category extends Model
     public function courses(): BelongsToMany {
         return $this->belongsToMany(Course::class, 'collections');
     }
+
+    public static function getTopLevel() {
+        return Category::where("parent_id", "=", null)->get();
+    }
 }
