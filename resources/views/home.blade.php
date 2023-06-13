@@ -7,7 +7,7 @@
 @section("content")
 
     @if (Auth::check())
-        <section>
+        <section class="gradient-1">
             User Hero Section
         </section>
         <section>
@@ -23,8 +23,9 @@
             <x-course-list :courses="App\Models\Course::getRecommended()" />
         </section>
         @else
-        <section>
-            Guest Hero Section
+        <section class="gradient-1 uk-text-center uk-padding-large">
+            <h1 class="uk-heading-large uk-padding-large">Welcome to TutsZone!</h1>
+            <p class="uk-text-lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veritatis molestias eligendi doloribus temporibus, dignissimos, unde fugit odio consequuntur dicta quia ea nobis cum ad necessitatibus perferendis, voluptatum rerum ut!</p>
         </section>
     @endif
     <section>

@@ -6,6 +6,11 @@
 @import "uikit/src/scss/mixins-theme.scss";
 @import "uikit/src/scss/uikit-theme.scss";
 
+.gradient-1 {
+    background-image: linear-gradient( 109.6deg,  rgba(61,245,167,1) 11.2%, rgba(9,111,224,1) 91.1% );
+    color: white;
+}
+
 .brand-logo {
     width: 32px;
 }
