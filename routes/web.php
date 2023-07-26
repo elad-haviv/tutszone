@@ -26,7 +26,7 @@ Route::controller(CategoryController::class)->group(function () {
 });
 
 Route::controller(CourseController::class)->group(function () {
-    Route::get('/course', 'index')->name('courses');
+    Route::get('/courses', 'index')->name('courses');
     Route::get('/course/{course:slug}', 'show')->name('course');
     Route::get('/course/{course:slug}/{lesson:slug}', 'show')->name('lesson');
 });

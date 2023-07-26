@@ -8,15 +8,36 @@
             </div>
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
+                    <li class="uk-navbar-item">
+                        <a href="#" title="{{ __("home") }}"><span uk-icon="home"></span></a>
+                    </li>
+                    <li class="uk-navbar-item">
+                        <a href="#">{{ __("browse") }}</a>
+                        <div class="uk-navbar-dropdown" uk-dropdown="stretch: true; animation: slide-top; animate-out: true">
+                            <p>Course Catalogue Placeholder</p>
+                        </div>
+                    </li>
+                    <li class="uk-navbar-item">
+                        <div class="uk-margin">
+                            <form class="uk-search uk-search-default">
+                                <input class="uk-search-input uk-border-pill" type="search" placeholder="{{ __("search") }}" aria-label="{{ __("search") }}">
+                                <span uk-search-icon></span>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
                     @auth
                         <li>
-                            <a href="#">My Learning</a>
+                            <a href="#">{{ __("my-learning") }}</a>
                         </li>
                         <li>
-                            <a href="#">Notifications</a>
+                            <a href="#">{{ __("notifications") }}</a>
                         </li>
                         <li>
-                            <a href="#">Account</a>
+                            <a href="#">{{ __("account") }}</a>
                             <div class="uk-navbar-dropdown">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
                                     <li class="uk-active"><a href="#">Active</a></li>
@@ -31,36 +52,12 @@
                         </li>
                     @else
                         <li>
-                            <a href="#">Login</a>
+                            <a href="#" title="{{ __("login") }}"><span uk-icon="sign-in"></span> {{ __("login") }}</a>
                             <div class="uk-navbar-dropdown uk-border-rounded">
-                                <p>Login form Here</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">Register</a>
-                            <div class="uk-navbar-dropdown uk-border-rounded">
-                                <p>Register form Here</p>
+                                <p>Login form Placeholder</p>
                             </div>
                         </li>
                     @endauth
-                </ul>
-            </div>
-            <div class="uk-navbar-left">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-navbar-item" dir="ltr">
-                        <div class="uk-margin">
-                            <form class="uk-search uk-search-default">
-                                <span class="uk-search-icon-flip" uk-search-icon></span>
-                                <input class="uk-search-input uk-border-pill" type="search" placeholder="Search" aria-label="Search">
-                            </form>
-                        </div>
-                    </li>
-                    <li class="uk-navbar-item" dir="ltr">
-                        <a href="#">BROWSE</a>
-                        <div class="uk-navbar-dropdown" uk-dropdown="stretch: true; animation: slide-top; animate-out: true">
-                            <p>Course Catalogue Here</p>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
