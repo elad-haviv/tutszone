@@ -1,5 +1,7 @@
-import UiKit from "uikit"
-import Icons from "uikit/dist/js/uikit-icons"
-import './bootstrap'
+import './bootstrap';
 
-UiKit.use(Icons)
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
