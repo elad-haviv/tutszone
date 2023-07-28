@@ -11,24 +11,33 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function course() : HasOne {
+    public function course(): HasOne
+    {
         return $this->hasOne(Course::class);
     }
 
-    public function lesson() : HasOne {
+    public function lesson(): HasOne
+    {
         return $this->hasOne(Lesson::class);
     }
 
-    public function user() : HasOne {
+    public function user(): HasOne
+    {
         return $this->hasOne(User::class);
     }
 
+    public function authorDetails()
+    {
+        return $this->user();
+    }
 
-    public function parent() : HasOne {
+    public function parent(): HasOne
+    {
         return $this->hasOne(Comment::class, "parent_id");
     }
 
-    public function children() : HasMany {
+    public function children(): HasMany
+    {
         return $this->hasMany(Comment::class, "parent_id");
     }
 }

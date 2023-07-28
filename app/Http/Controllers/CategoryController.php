@@ -7,16 +7,19 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(Request $r) {
+    public function index(Request $r)
+    {
         $categories = Category::whereNull("parent_id")->get();
-        $res = "List of Categories: <br />";
-        foreach ($categories as $category) {
-            $res .= "<a href='". route('category', ['category' => $category]) ."'>{$category->title}</a> <br />";
-        }
-        return $res;
+        return view("categories.list", ["categories" => $categories]);
     }
 
-    public function show(Request $r, Category $category) {
-        return "Category: {$category->title}.";
+    public function show(Request $r, Category $category)
+    {
+        return view("categories.show", [
+            "category" => $category,
+            "parent" => $category->parent(),
+            "courses" => $category->courses(),
+            "childCategories" => $category->children()
+        ]);
     }
 }
