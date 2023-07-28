@@ -6,13 +6,9 @@
 
 namespace App\Pagination;
 
-use Illuminate\Contracts\Pagination\Paginator as PaginatorContract;
-use Illuminate\Contracts\Pagination\Presenter as PresenterContract;
-use Illuminate\Pagination\BootstrapThreeNextPreviousButtonRendererTrait;
-use Illuminate\Pagination\UrlWindow;
-use Illuminate\Pagination\UrlWindowPresenterTrait;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class UiKitPresenter implements PresenterContract
+class UiKitPresenter implements LengthAwarePaginator
 {
     use BootstrapThreeNextPreviousButtonRendererTrait, UrlWindowPresenterTrait;
 

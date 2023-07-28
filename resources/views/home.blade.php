@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <div class="uk-block uk-block-muted">
+    <div class="uk-block uk-block-muted hero-section">
         <div class="uk-container uk-container-center padded">
             <h1 class="uk-text-center">{{ trans('main.welcome') }}</h1>
             <p class="uk-text-center uk-text-large padded">{!! trans('main.description') !!}</p>
