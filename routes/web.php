@@ -17,31 +17,117 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    /* Home page */
+    Route::get('/', [
+        'as' => 'home',
+        'uses' => 'HomeController@showIndex'
+    ]);
 
-Route::prefix('category')->group(function () {
-    Route::get('/', [CategoryController::class, 'index'])
-        ->name('category.list')
-        ->can('viewAny', [Category::class]);
-    Route::get('/{category:slug}', [CategoryController::class, 'show'])
-        ->name('category.show')
-        ->middleware('can:view,category');
+    /* Content page */
+    Route::get('page/{name}', [
+        'as' => 'page',
+        'uses' => 'PageController@showIndex'
+    ]);
 
-    Route::middleware('can:create,category')->group(function () {
-        Route::get('/create', [CategoryController::class, 'category.new']);
-        Route::post('/create', [CategoryController::class, 'category.create']);
+    /* Contact page */
+    Route::get('/contact', [
+        'as' => 'contact',
+        'uses' => 'HomeController@getContact'
+    ]);
+    Route::post('/contact', [
+        'as' => 'contact.post',
+        'uses' => 'HomeController@postContact'
+    ]);
+
+    Route::post('/upload', [
+        'as' => 'upload',
+        'uses' => 'UploadController@handle'
+    ]);
+
+    /* Group for categories */
+    Route::group(['prefix' => 'category', 'as' => 'category:'], function () {
+        /* Categories list */
+        Route::get('/', [
+            'as' => 'home',
+            'uses' => 'CategoryController@showIndex'
+        ]);
+        /* Show the content of a single category */
+        Route::get('/{name}', [
+            'as' => 'show',
+            'uses' => 'CategoryController@showCategory'
+        ]);
     });
 
-    Route::middleware('can:update,category')->group(function () {
-        Route::get('/edit/{category:slug}', [CategoryController::class, 'category.edit']);
-        Route::post('/edit/{category:slug}', [CategoryController::class, 'category.update']);
+    /* Group for courses */
+    Route::group(['prefix' => 'course', 'as' => 'course:'], function () {
+        /* Show the course, list all it's tutorials */
+        Route::get('/{name}/{lesson?}', [
+            'as' => 'show',
+            'uses' => 'CourseController@showIndex'
+        ]);
+        Route::post('comment', [
+            'as' => 'comment',
+            'uses' => 'CourseController@postComment'
+        ]);
     });
 
-    Route::middleware('can:delete,category')->group(function () {
-        Route::get('/delete/{category:slug}', [CategoryController::class, 'category.edit']);
-        Route::post('/edit/{category:slug}', [CategoryController::class, 'category.update']);
+    /* Group for member profiles */
+    Route::group(['prefix' => 'member', 'as' => 'member:'], function () {
+        /* Show a single member profile by the username */
+        Route::get('/{name}', [
+            'as' => 'show',
+            'uses' => 'MemberController@showIndex'
+        ]);
     });
 });
+
+
+/* Group for admin control panel*/
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Acp', 'as' => 'admin:'], function () {
+    /* Show the home page */
+    Route::get('/', [
+        'as' => 'home',
+        'uses' => 'HomeController@showIndex'
+    ]);
+
+    /* For each group in the list,
+     * create routes for addition, modification and removal of items.
+     */
+    $groups = ['category', 'member', 'page', 'course', 'lesson'];
+
+    foreach ($groups as $group) {
+        $controller = ucfirst($group);
+        Route::group(['prefix' => $group, 'as' => $group . ':'], function () use ($controller) {
+            Route::get('/', [
+                'as' => 'home',
+                'uses' => $controller . 'Controller@showIndex'
+            ]);
+            Route::get('edit/{id}', [
+                'as' => 'edit',
+                'uses' => $controller . 'Controller@showEdit'
+            ]);
+            Route::post('edit', [
+                'as' => 'post.edit',
+                'uses' => $controller . 'Controller@postEdit'
+            ]);
+            Route::get('add/{data?}', [
+                'as' => 'add',
+                'uses' => $controller . 'Controller@showAdd'
+            ]);
+            Route::post('add', [
+                'as' => 'post.add',
+                'uses' => $controller . 'Controller@postAdd'
+            ]);
+            Route::get('delete/{id}', [
+                'as' => 'delete',
+                'uses' => $controller . 'Controller@delete'
+            ]);
+        });
+    }
+});
+
+// User Authentication Routes
 
 Route::get('/dashboard', function () {
     return view('dashboard');

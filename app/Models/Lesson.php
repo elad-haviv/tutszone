@@ -12,23 +12,33 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    public function course() : BelongsTo {
+    public function course(): BelongsTo
+    {
         return $this->belongsTo(Course::class);
     }
 
-    public function section() : BelongsTo {
+    public function section(): BelongsTo
+    {
         return $this->belongsTo(Section::class);
     }
 
-    public function categories() : BelongsToMany {
+    public function categories(): BelongsToMany
+    {
         return $this->belongsToMany(Category::class, 'collections');
     }
 
-    public function cempleted() : BelongsToMany {
+    public function cempleted(): BelongsToMany
+    {
         return $this->belongsToMany(User::class, 'completions');
     }
 
-    public function comments() : HasMany {
+    public function comments(): HasMany
+    {
         return $this->hasMany(Comment::class);
+    }
+
+    public function addons()
+    {
+        return [];
     }
 }

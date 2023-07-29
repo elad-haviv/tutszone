@@ -1,0 +1,8 @@
+{
+  "styles": [
+    "resources/assets/css/prism.css"
+  ],
+  "scripts": [
+    "resources/assets/js/vendor/prism.js"
+  ]
+}
