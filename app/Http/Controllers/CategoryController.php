@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function showIndex()
     {
-        $categories = Category::where('parent', 0)->paginate(1);
+        $categories = Category::where('parent', 0)->paginate(12);
         return view("categories.list", ["categories" => $categories]);
     }
 

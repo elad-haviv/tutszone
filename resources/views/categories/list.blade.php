@@ -30,7 +30,7 @@
                     <a href="{{ route('category:show', ['name' => $category->name]) }}">
                         <div class="uk-panel uk-panel-box tz-category-card">
                             <div class="uk-margin-bottom">
-                                <img src="{{ url($category->picture !== null ? $category->picture : 'resources/assets/images/default-category.png') }}"
+                                <img src="{{ url($category->picture !== null ? $category->picture : 'images/default-category.png') }}"
                                     alt="thumbnail" title="thumbnail" class="uk-border-circle" />
                             </div>
                             <h1 class="uk-panel-title uk-text-center">{{ $category->title }}</h1>
