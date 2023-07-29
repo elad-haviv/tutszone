@@ -3,30 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-<<<<<<< HEAD
-use Exception;
-=======
 use App\Models\Course;
->>>>>>> migrate-from-old
+use Exception;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-<<<<<<< HEAD
-    public function index(Request $r)
-    {
-        $categories = Category::whereNull("parent_id")->get();
-        $res = "List of Categories: <br />";
-        foreach ($categories as $category) {
-            $res .= "<a href='" . route('category.show', ['category' => $category]) . "'>{$category->title}</a> <br />";
-        }
-        return $res;
-    }
-
-    public function show(Request $r, Category $category)
-    {
-        return "Category: {$category->title}.";
-=======
     public function showIndex()
     {
         $categories = Category::where('parent', 0)->paginate(12);
@@ -51,7 +33,6 @@ class CategoryController extends Controller
             "parent" => $parent,
             "courses" => $courses
         ]);
->>>>>>> migrate-from-old
     }
 
     public function create(Request $r)
