@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -11,29 +12,24 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function course(): HasOne
+    public function course(): BelongsTo
     {
-        return $this->hasOne(Course::class);
+        return $this->belongsTo(Course::class);
     }
 
-    public function lesson(): HasOne
+    public function lesson(): BelongsTo
     {
-        return $this->hasOne(Lesson::class);
+        return $this->belongsTo(Lesson::class);
     }
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, "author");
     }
 
-    public function authorDetails()
+    public function parent(): BelongsTo
     {
-        return $this->user();
-    }
-
-    public function parent(): HasOne
-    {
-        return $this->hasOne(Comment::class, "parent_id");
+        return $this->belongsTo(Comment::class, "parent_id");
     }
 
     public function children(): HasMany

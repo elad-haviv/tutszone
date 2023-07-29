@@ -3,8 +3,7 @@
         <nav class="uk-navbar uk-navbar-attached" id="top-nav">
             <div class="uk-container uk-container-center" id="navbar-container">
                 <a href="{{ route('home') }}" title="TutsZone" class="uk-navbar-brand brand-name" id="brand">
-                    <img src="{{ url('resources/assets/images/icons/icon-24.png') }}" title="Icon" alt="Icon"
-                        id="brand-logo" />
+                    <img src="{{ url('images/logo.svg') }}" title="Icon" alt="Icon" id="brand-logo" />
                     <span id="brand-name">
                         <span>Tuts</span><span>Zone</span>
                     </span>

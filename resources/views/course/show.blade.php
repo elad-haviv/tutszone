@@ -163,7 +163,6 @@
 
 @section('scripts')
     @parent
-    <script src="{{ url('resources/assets/js/components/lightbox.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {
@@ -181,7 +180,8 @@
                 @if (Auth::user()->group == 1)
                     $('[data-delete-lesson]').click(function() {
                         if (confirm("{{ trans('admin.lesson.delete-confirm') }}") == true) {
-                            window.location = "{{ route('admin:lesson:delete', ['id' => null]) }}/" + $(this)
+                            window.location = "{{ route('admin:lesson:delete', ['id' => null]) }}/" + $(
+                                    this)
                                 .attr('data-delete-lesson');
                         }
                     });
