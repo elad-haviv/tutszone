@@ -79,66 +79,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     });
 });
 
-/* Group for User authentication */
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth', 'as' => 'auth:'], function () {
-    // Authentication routes...
-    Route::get('login', [
-        'as' => 'login',
-        'uses' => 'AuthController@getLogin'
-    ]);
-    Route::post('login', [
-        'as' => 'login.post',
-        'uses' => 'AuthController@postLogin'
-    ]);
-    Route::get('logout', [
-        'as' => 'logout',
-        'uses' => 'AuthController@getLogout'
-    ]);
-
-    // Registration routes...
-    Route::get('register/{redirectRoute?}', [
-        'as' => 'register',
-        'uses' => 'AuthController@getRegister'
-    ]);
-    Route::post('register', [
-        'as' => 'register.post',
-        'uses' => 'AuthController@postRegister'
-    ]);
-});
-
-/* Group for password reset */
-Route::group(['prefix' => 'password', 'namespace' => 'Auth', 'as' => 'password:'], function () {
-    // Password reset link request routes...
-    Route::get('email', [
-        'uses' => 'PasswordController@getEmail',
-        'as' => 'email'
-    ]);
-    Route::post('email', [
-        'uses' => 'PasswordController@postEmail',
-        'as' => 'email.post'
-    ]);
-
-    // Password reset routes...
-    Route::get('reset/{token}', [
-        'uses' => 'PasswordController@getReset',
-        'as' => 'reset'
-    ]);
-    Route::post('reset', [
-        'uses' => 'PasswordController@postReset',
-        'as' => 'reset.post'
-    ]);
-});
-
-/* Group for User control panel */
-Route::group(['prefix' => 'account', 'namespace' => 'Ucp', 'as' => 'ucp:'], function () {
-    Route::get('/', [
-        'as' => 'home',
-        'uses' => 'HomeController@showIndex'
-    ]);
-});
 
 /* Group for admin control panel*/
-Route::group(['prefix' => 'admin', 'namespace' => 'Acp', 'as' => 'admin:'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Acp', 'as' => 'admin:'], function () {
     /* Show the home page */
     Route::get('/', [
         'as' => 'home',
