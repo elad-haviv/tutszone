@@ -12,13 +12,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Node for vite build
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /var/www/html
 COPY composer.json composer.lock package.json package-lock.json ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
-RUN npm ci && npm run build && rm -rf node_modules
 
 COPY . .
 RUN chown -R www-data:www-data storage bootstrap/cache public \
