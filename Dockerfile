@@ -29,4 +29,4 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     && a2enmod rewrite
 
 # Cache config/routes and prepare sqlite db, then run apache
-CMD ["sh", "-c", "php artisan config:cache; php artisan route:cache; touch database/database.sqlite; php artisan migrate --force || true; apache2-foreground"]
+CMD ["sh", "-c", "php artisan config:cache; php artisan route:cache; php artisan migrate --force; php artisan db:seed --force || true; apache2-foreground"]

@@ -4,7 +4,7 @@
  * @author Elad Haviv <elad.haviv@gmail.com>
  */
 
-namespace TutsZone\Http\Controllers\Acp;
+namespace App\Http\Controllers\Acp;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

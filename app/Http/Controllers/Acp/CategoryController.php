@@ -4,12 +4,12 @@
  * @author Elad Haviv <elad.haviv@gmail.com>
  */
 
-namespace TutsZone\Http\Controllers\Acp;
+namespace App\Http\Controllers\Acp;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
-use TutsZone\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends AdminController
 {
